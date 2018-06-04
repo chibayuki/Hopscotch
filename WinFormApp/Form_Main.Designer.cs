@@ -162,7 +162,7 @@
             this.Panel_FunctionAreaOptionsBar.Controls.Add(this.Label_Tab_About);
             this.Panel_FunctionAreaOptionsBar.Location = new System.Drawing.Point(0, 0);
             this.Panel_FunctionAreaOptionsBar.MaximumSize = new System.Drawing.Size(150, 65535);
-            this.Panel_FunctionAreaOptionsBar.MinimumSize = new System.Drawing.Size(50, 50);
+            this.Panel_FunctionAreaOptionsBar.MinimumSize = new System.Drawing.Size(40, 40);
             this.Panel_FunctionAreaOptionsBar.Name = "Panel_FunctionAreaOptionsBar";
             this.Panel_FunctionAreaOptionsBar.Size = new System.Drawing.Size(150, 420);
             this.Panel_FunctionAreaOptionsBar.TabIndex = 0;
@@ -176,7 +176,7 @@
             this.Label_Tab_Start.ForeColor = System.Drawing.Color.White;
             this.Label_Tab_Start.Location = new System.Drawing.Point(0, 0);
             this.Label_Tab_Start.MaximumSize = new System.Drawing.Size(150, 50);
-            this.Label_Tab_Start.MinimumSize = new System.Drawing.Size(50, 10);
+            this.Label_Tab_Start.MinimumSize = new System.Drawing.Size(40, 10);
             this.Label_Tab_Start.Name = "Label_Tab_Start";
             this.Label_Tab_Start.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.Label_Tab_Start.Size = new System.Drawing.Size(150, 50);
@@ -195,7 +195,7 @@
             this.Label_Tab_Record.ForeColor = System.Drawing.Color.White;
             this.Label_Tab_Record.Location = new System.Drawing.Point(0, 50);
             this.Label_Tab_Record.MaximumSize = new System.Drawing.Size(150, 50);
-            this.Label_Tab_Record.MinimumSize = new System.Drawing.Size(50, 10);
+            this.Label_Tab_Record.MinimumSize = new System.Drawing.Size(40, 10);
             this.Label_Tab_Record.Name = "Label_Tab_Record";
             this.Label_Tab_Record.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.Label_Tab_Record.Size = new System.Drawing.Size(150, 50);
@@ -214,7 +214,7 @@
             this.Label_Tab_Options.ForeColor = System.Drawing.Color.White;
             this.Label_Tab_Options.Location = new System.Drawing.Point(0, 100);
             this.Label_Tab_Options.MaximumSize = new System.Drawing.Size(150, 50);
-            this.Label_Tab_Options.MinimumSize = new System.Drawing.Size(50, 10);
+            this.Label_Tab_Options.MinimumSize = new System.Drawing.Size(40, 10);
             this.Label_Tab_Options.Name = "Label_Tab_Options";
             this.Label_Tab_Options.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.Label_Tab_Options.Size = new System.Drawing.Size(150, 50);
@@ -233,7 +233,7 @@
             this.Label_Tab_About.ForeColor = System.Drawing.Color.White;
             this.Label_Tab_About.Location = new System.Drawing.Point(0, 150);
             this.Label_Tab_About.MaximumSize = new System.Drawing.Size(150, 50);
-            this.Label_Tab_About.MinimumSize = new System.Drawing.Size(50, 10);
+            this.Label_Tab_About.MinimumSize = new System.Drawing.Size(40, 10);
             this.Label_Tab_About.Name = "Label_Tab_About";
             this.Label_Tab_About.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.Label_Tab_About.Size = new System.Drawing.Size(150, 50);
@@ -636,9 +636,9 @@
             this.Label_ThemeColor.ForeColor = System.Drawing.Color.White;
             this.Label_ThemeColor.Location = new System.Drawing.Point(0, 0);
             this.Label_ThemeColor.Name = "Label_ThemeColor";
-            this.Label_ThemeColor.Size = new System.Drawing.Size(69, 20);
+            this.Label_ThemeColor.Size = new System.Drawing.Size(54, 20);
             this.Label_ThemeColor.TabIndex = 0;
-            this.Label_ThemeColor.Text = "主题颜色";
+            this.Label_ThemeColor.Text = "主题色";
             // 
             // RadioButton_UseRandomThemeColor
             // 

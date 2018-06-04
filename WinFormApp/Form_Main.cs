@@ -2,7 +2,7 @@
 Copyright © 2013-2018 chibayuki@foxmail.com
 
 跳方格
-Version 7.1.17000.790.R5.180602-0000
+Version 7.1.17000.790.R5.180604-0000
 
 This file is part of 跳方格
 
@@ -39,7 +39,7 @@ namespace WinFormApp
         private static readonly Int32 BuildNumber = new Version(Application.ProductVersion).Build; // 版本号。
         private static readonly Int32 BuildRevision = new Version(Application.ProductVersion).Revision; // 修订版本。
         private static readonly string LabString = "R6"; // 分支名。
-        private static readonly string BuildTime = "180602-0000"; // 编译时间。
+        private static readonly string BuildTime = "180604-0000"; // 编译时间。
 
         //
 
