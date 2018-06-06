@@ -1204,16 +1204,14 @@ namespace WinFormApp
             // 保存上次游戏。
             //
 
-            PlatformList_Last.Clear();
-
-            foreach (var V in PlatformList)
-            {
-                PlatformList_Last.Add(V);
-            }
-
-            Character_Last.Color = Character.Color;
+            ThisRecord.NextDirection = NextDirection;
 
             Record_Last = ThisRecord;
+
+            PlatformList_Last.Clear();
+            PlatformList_Last.AddRange(PlatformList);
+
+            Character_Last.Color = Character.Color;
 
             //
 
@@ -2242,8 +2240,6 @@ namespace WinFormApp
 
                         if (!GameIsOver && ThisRecord.Score > 0)
                         {
-                            ThisRecord.NextDirection = NextDirection;
-
                             SaveLastGame();
                         }
 
@@ -2263,18 +2259,10 @@ namespace WinFormApp
 
                         //
 
-                        Panel_Environment.Focus();
-
-                        //
-
                         if (!GameIsOver && ThisRecord.Score > 0)
                         {
-                            ThisRecord.NextDirection = NextDirection;
-
                             SaveLastGame();
                         }
-
-                        ExitGameUI();
                     }
                     break;
             }
