@@ -2,7 +2,7 @@
 Copyright © 2013-2018 chibayuki@foxmail.com
 
 跳方格
-Version 7.1.17000.790.R5.180604-0000
+Version 7.1.17000.790.R5.180606-0000
 
 This file is part of 跳方格
 
@@ -39,7 +39,7 @@ namespace WinFormApp
         private static readonly Int32 BuildNumber = new Version(Application.ProductVersion).Build; // 版本号。
         private static readonly Int32 BuildRevision = new Version(Application.ProductVersion).Revision; // 修订版本。
         private static readonly string LabString = "R6"; // 分支名。
-        private static readonly string BuildTime = "180604-0000"; // 编译时间。
+        private static readonly string BuildTime = "180606-0000"; // 编译时间。
 
         //
 
@@ -169,7 +169,7 @@ namespace WinFormApp
 
         //
 
-        private List<Cuboid> PlatformList = new List<Cuboid>(0); // 跳台列表。
+        private List<Cuboid> PlatformList = new List<Cuboid>(3); // 跳台列表。
 
         private Cuboid Character = Cuboid.Empty; // 角色。
 
@@ -202,7 +202,7 @@ namespace WinFormApp
 
         private Record Record_Last = new Record(); // 上次游戏的记录。
 
-        private List<Cuboid> PlatformList_Last = new List<Cuboid>(0); // 上次游戏的跳台列表。
+        private List<Cuboid> PlatformList_Last = new List<Cuboid>(3); // 上次游戏的跳台列表。
 
         private Cuboid Character_Last = Cuboid.Empty; // 上次游戏的角色。
 
@@ -684,7 +684,7 @@ namespace WinFormApp
                     if (OldVersionList.Count > 0)
                     {
                         List<Version> OldVersionList_Copy = new List<Version>(OldVersionList);
-                        List<Version> OldVersionList_Sorted = new List<Version>(0);
+                        List<Version> OldVersionList_Sorted = new List<Version>(OldVersionList_Copy.Count);
 
                         while (OldVersionList_Copy.Count > 0)
                         {
@@ -704,11 +704,13 @@ namespace WinFormApp
 
                         for (int i = 0; i < OldVersionList_Sorted.Count; i++)
                         {
-                            if (Directory.Exists(RootDir_Product + "\\" + OldVersionList_Sorted[i].Build + "." + OldVersionList_Sorted[i].Revision))
+                            string Dir = RootDir_Product + "\\" + OldVersionList_Sorted[i].Build + "." + OldVersionList_Sorted[i].Revision;
+
+                            if (Directory.Exists(Dir))
                             {
                                 try
                                 {
-                                    Com.IO.CopyFolder(RootDir_Product + "\\" + OldVersionList_Sorted[i].Build + "." + OldVersionList_Sorted[i].Revision, RootDir_CurrentVersion);
+                                    Com.IO.CopyFolder(Dir, RootDir_CurrentVersion);
 
                                     break;
                                 }
@@ -1358,8 +1360,8 @@ namespace WinFormApp
             { GameBmpRect.Width / 2, GameBmpRect.Height / 2, TrueLenDist, 1 }
         };
 
-        private List<double[,]> GraphAffineMatrixList = new List<double[,]>(0); // 绘图仿射矩阵列表。
-        private List<double[,]> CharacterAffineMatrixList = new List<double[,]>(0); // 角色仿射矩阵列表。
+        private List<double[,]> GraphAffineMatrixList = new List<double[,]>(4); // 绘图仿射矩阵列表。
+        private List<double[,]> CharacterAffineMatrixList = new List<double[,]>(3); // 角色仿射矩阵列表。
 
         private Com.PointD3D IlluminationDirection // 光照方向。
         {
@@ -1777,7 +1779,7 @@ namespace WinFormApp
 
             if (!Character.IsEmpty)
             {
-                List<Com.PointD> PlatformXY = new List<Com.PointD>(0);
+                List<Com.PointD> PlatformXY = new List<Com.PointD>(PlatformList.Count);
 
                 for (int i = 0; i < PlatformList.Count; i++)
                 {
