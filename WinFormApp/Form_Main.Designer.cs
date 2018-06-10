@@ -167,6 +167,7 @@
             this.Panel_FunctionAreaOptionsBar.Size = new System.Drawing.Size(150, 420);
             this.Panel_FunctionAreaOptionsBar.TabIndex = 0;
             this.Panel_FunctionAreaOptionsBar.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_FunctionAreaOptionsBar_Paint);
+            this.Panel_FunctionAreaOptionsBar.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.Panel_FunctionAreaOptionsBar_MouseWheel);
             // 
             // Label_Tab_Start
             // 
@@ -955,7 +956,6 @@
             this.Name = "Form_Main";
             this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.Form_Main_MouseWheel);
             this.Panel_Main.ResumeLayout(false);
             this.Panel_Client.ResumeLayout(false);
             this.Panel_FunctionArea.ResumeLayout(false);
