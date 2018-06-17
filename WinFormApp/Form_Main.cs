@@ -2,7 +2,7 @@
 Copyright © 2013-2018 chibayuki@foxmail.com
 
 跳方格
-Version 7.1.17000.790.R5.180617-0000
+Version 7.1.17000.790.R5.180618-0000
 
 This file is part of 跳方格
 
@@ -39,7 +39,7 @@ namespace WinFormApp
         private static readonly Int32 BuildNumber = new Version(Application.ProductVersion).Build; // 版本号。
         private static readonly Int32 BuildRevision = new Version(Application.ProductVersion).Revision; // 修订版本。
         private static readonly string LabString = "R6"; // 分支名。
-        private static readonly string BuildTime = "180617-0000"; // 编译时间。
+        private static readonly string BuildTime = "180618-0000"; // 编译时间。
 
         //
 
@@ -702,11 +702,11 @@ namespace WinFormApp
                         {
                             Version NewestVersion = OldVersionList_Copy[0];
 
-                            foreach (var V in OldVersionList_Copy)
+                            foreach (Version Ver in OldVersionList_Copy)
                             {
-                                if (NewestVersion <= V)
+                                if (NewestVersion <= Ver)
                                 {
-                                    NewestVersion = V;
+                                    NewestVersion = Ver;
                                 }
                             }
 
@@ -748,9 +748,9 @@ namespace WinFormApp
             {
                 if (OldVersionList.Count > 0)
                 {
-                    foreach (var V in OldVersionList)
+                    foreach (Version Ver in OldVersionList)
                     {
-                        string Dir = RootDir_Product + "\\" + V.Build + "." + V.Revision;
+                        string Dir = RootDir_Product + "\\" + Ver.Build + "." + Ver.Revision;
 
                         if (Directory.Exists(Dir))
                         {
@@ -843,11 +843,11 @@ namespace WinFormApp
                     {
                         string SubStr = Com.Text.GetIntervalString(Cfg, "<Theme>", "</Theme>", false, false);
 
-                        foreach (var V in Enum.GetValues(typeof(Com.WinForm.Theme)))
+                        foreach (object Obj in Enum.GetValues(typeof(Com.WinForm.Theme)))
                         {
-                            if (SubStr.Trim().ToUpper() == V.ToString().ToUpper())
+                            if (SubStr.Trim().ToUpper() == Obj.ToString().ToUpper())
                             {
-                                Me.Theme = (Com.WinForm.Theme)V;
+                                Me.Theme = (Com.WinForm.Theme)Obj;
 
                                 break;
                             }
@@ -2183,9 +2183,9 @@ namespace WinFormApp
 
                         NextDirection = Record_Last.NextDirection;
 
-                        foreach (var V in PlatformList_Last)
+                        foreach (Cuboid Cub in PlatformList_Last)
                         {
-                            PlatformList.Add(V);
+                            PlatformList.Add(Cub);
                         }
 
                         Character.Size = CharacterSize;
@@ -2708,9 +2708,9 @@ namespace WinFormApp
             {
                 Panel_Current.CreateGraphics().DrawImage(CurBmp, new Point(0, 0));
 
-                foreach (var V in Panel_Current.Controls)
+                foreach (object Obj in Panel_Current.Controls)
                 {
-                    ((Control)V).Refresh();
+                    ((Control)Obj).Refresh();
                 }
             }
         }
@@ -2838,11 +2838,11 @@ namespace WinFormApp
 
                     Panel_FunctionAreaTab.AutoScroll = false;
 
-                    foreach (var V in Panel_FunctionAreaTab.Controls)
+                    foreach (object Obj in Panel_FunctionAreaTab.Controls)
                     {
-                        if (V is Panel)
+                        if (Obj is Panel)
                         {
-                            Panel Pnl = V as Panel;
+                            Panel Pnl = Obj as Panel;
 
                             Pnl.Location = new Point(0, 0);
                         }
