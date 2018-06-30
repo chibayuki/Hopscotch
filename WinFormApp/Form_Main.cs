@@ -67,7 +67,7 @@ namespace WinFormApp
         //
 
         private static readonly string URL_GitHub_Base = @"https://github.com/chibayuki/Hopscotch"; // 此项目在 GitHub 的 URL。
-        private static readonly string URL_GitHub_Release = URL_GitHub_Base + @"/releases"; // 此项目的发布版本在 GitHub 的 URL。
+        private static readonly string URL_GitHub_Release = URL_GitHub_Base + @"/releases/latest"; // 此项目的最新发布版本在 GitHub 的 URL。
 
         #endregion
 
