@@ -1,12 +1,12 @@
 ﻿/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Copyright © 2013-2018 chibayuki@foxmail.com
+Copyright © 2018 chibayuki@foxmail.com
 
-跳方格
-Version 7.1.17000.790.R5.180618-0000
+跳方格 (Hopscotch)
+Version 7.1.17000.1760.R6.180707-1700
 
-This file is part of 跳方格
+This file is part of "跳方格" (Hopscotch)
 
-跳方格 is released under the GPLv3 license
+"跳方格" (Hopscotch) is released under the GPLv3 license
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 using System;
@@ -39,7 +39,7 @@ namespace WinFormApp
         private static readonly Int32 BuildNumber = new Version(Application.ProductVersion).Build; // 版本号。
         private static readonly Int32 BuildRevision = new Version(Application.ProductVersion).Revision; // 修订版本。
         private static readonly string LabString = "R6"; // 分支名。
-        private static readonly string BuildTime = "180618-0000"; // 编译时间。
+        private static readonly string BuildTime = "180707-1700"; // 编译时间。
 
         //
 
@@ -60,8 +60,8 @@ namespace WinFormApp
             new Version(7, 1, 17000, 0),
             new Version(7, 1, 17000, 310),
             new Version(7, 1, 17000, 456),
-            new Version(7, 1, 17000, 602),/*
-            new Version(7, 1, 17000, 790)*/
+            new Version(7, 1, 17000, 602),
+            new Version(7, 1, 17000, 790)
         };
 
         //

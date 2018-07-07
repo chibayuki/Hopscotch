@@ -730,7 +730,7 @@
             this.Panel_Tab_About.Controls.Add(this.Label_Copyright);
             this.Panel_Tab_About.Controls.Add(this.Panel_GitHub);
             this.Panel_Tab_About.Location = new System.Drawing.Point(0, 0);
-            this.Panel_Tab_About.MinimumSize = new System.Drawing.Size(430, 315);
+            this.Panel_Tab_About.MinimumSize = new System.Drawing.Size(395, 315);
             this.Panel_Tab_About.Name = "Panel_Tab_About";
             this.Panel_Tab_About.Size = new System.Drawing.Size(435, 420);
             this.Panel_Tab_About.TabIndex = 0;
@@ -793,9 +793,9 @@
             this.Label_Copyright.ForeColor = System.Drawing.Color.White;
             this.Label_Copyright.Location = new System.Drawing.Point(60, 210);
             this.Label_Copyright.Name = "Label_Copyright";
-            this.Label_Copyright.Size = new System.Drawing.Size(310, 19);
+            this.Label_Copyright.Size = new System.Drawing.Size(272, 19);
             this.Label_Copyright.TabIndex = 0;
-            this.Label_Copyright.Text = "Copyright © 2013-2018 chibayuki@foxmail.com";
+            this.Label_Copyright.Text = "Copyright © 2018 chibayuki@foxmail.com";
             // 
             // Panel_GitHub
             // 
@@ -954,7 +954,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Main";
-            this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Panel_Main.ResumeLayout(false);
             this.Panel_Client.ResumeLayout(false);
