@@ -2,7 +2,7 @@
 Copyright © 2018 chibayuki@foxmail.com
 
 跳方格 (Hopscotch)
-Version 7.1.17000.1760.R6.180707-1700
+Version 7.1.17000.1760.R7.180811-0000
 
 This file is part of "跳方格" (Hopscotch)
 
@@ -38,8 +38,8 @@ namespace WinFormApp
         private static readonly Int32 MinorVersion = new Version(Application.ProductVersion).Minor; // 副版本。
         private static readonly Int32 BuildNumber = new Version(Application.ProductVersion).Build; // 版本号。
         private static readonly Int32 BuildRevision = new Version(Application.ProductVersion).Revision; // 修订版本。
-        private static readonly string LabString = "R6"; // 分支名。
-        private static readonly string BuildTime = "180707-1700"; // 编译时间。
+        private static readonly string LabString = "R7"; // 分支名。
+        private static readonly string BuildTime = "180811-0000"; // 编译时间。
 
         //
 
@@ -61,7 +61,8 @@ namespace WinFormApp
             new Version(7, 1, 17000, 310),
             new Version(7, 1, 17000, 456),
             new Version(7, 1, 17000, 602),
-            new Version(7, 1, 17000, 790)
+            new Version(7, 1, 17000, 790),/*
+            new Version(7, 1, 17000, 1760)*/
         };
 
         //
@@ -1374,24 +1375,24 @@ namespace WinFormApp
 
         private double TrueLenDist => new Com.PointD(Screen.PrimaryScreen.Bounds.Size).VectorModule * GraphScale; // 真实尺寸距离。
 
-        private double[,] GraphAffineMatrix => new double[4, 4] // 绘图仿射矩阵。此仿射矩阵表示将三维坐标依次绕 X 轴旋转 90°、绕 Y 轴旋转 -45°、绕 X 轴旋转 35°，以及平移至特定位置。
+        private Com.Matrix2D GraphAffineMatrix => new Com.Matrix2D(new double[4, 4] // 绘图仿射矩阵。此仿射矩阵表示将三维坐标依次绕 X 轴旋转 90°、绕 Y 轴旋转 -45°、绕 X 轴旋转 35°，以及平移至特定位置。
         {
             { 0.70710678118654752, -0.4055797876726388, 0.57922796533956917, 0 },
             { -0.70710678118654752, -0.4055797876726388, 0.57922796533956917, 0 },
             { 0, -0.8191520442889918, -0.573576436351046, 0 },
             { GameBmpRect.Width / 2, GameBmpRect.Height / 2, TrueLenDist, 1 }
-        };
+        });
 
-        private List<double[,]> GraphAffineMatrixList = new List<double[,]>(4); // 绘图仿射矩阵列表。
-        private List<double[,]> CharacterAffineMatrixList = new List<double[,]>(3); // 角色仿射矩阵列表。
+        private List<Com.Matrix2D> GraphAffineMatrixList = new List<Com.Matrix2D>(4); // 绘图仿射矩阵列表。
+        private List<Com.Matrix2D> CharacterAffineMatrixList = new List<Com.Matrix2D>(3); // 角色仿射矩阵列表。
 
         private Com.PointD3D IlluminationDirection // 光照方向。
         {
             get
             {
-                double[,] GAMatrix;
+                Com.Matrix2D GAMatrix = GraphAffineMatrix.Copy();
 
-                if (Com.Matrix2D.Copy(GraphAffineMatrix, out GAMatrix) && (GAMatrix != null && Com.Matrix2D.GetSize(GAMatrix) == new Size(4, 4)))
+                if (!Com.Matrix2D.IsNullOrNonMatrix(GAMatrix) && GAMatrix.Size == new Size(4, 4))
                 {
                     GAMatrix[3, 0] = GAMatrix[3, 1] = GAMatrix[3, 2] = 0;
 
@@ -1438,9 +1439,9 @@ namespace WinFormApp
                 double TLDist = TrueLenDist;
                 Com.PointD3D IDirection = IlluminationDirection;
 
-                double[,] GAMatrix;
+                Com.Matrix2D GAMatrix = Com.Matrix2D.MultiplyLeft(GraphAffineMatrixList);
 
-                if (!Com.Matrix2D.MultiplyLeft(GraphAffineMatrixList, out GAMatrix))
+                if (Com.Matrix2D.IsNullOrNonMatrix(GAMatrix))
                 {
                     GAMatrix = GraphAffineMatrix;
                 }
@@ -1471,7 +1472,7 @@ namespace WinFormApp
 
                 if (CharacterAffineMatrixList.Count > 0)
                 {
-                    List<double[,]> CAMList = new List<double[,]>(CharacterAffineMatrixList);
+                    List<Com.Matrix2D> CAMList = new List<Com.Matrix2D>(CharacterAffineMatrixList);
 
                     CAMList.Add(GAMatrix);
 
@@ -1710,11 +1711,11 @@ namespace WinFormApp
                     double HalfDist = (NextDirection == Directions.X_INC ? Dest.X - Src.X : Dest.Y - Src.Y) / 2;
                     double DeltaS = (NextDirection == Directions.X_INC ? Character.Center.X - Src.X : Character.Center.Y - Src.Y);
                     double RotateAngle = (DeltaS < HalfDist ? Math.PI / 2 * Math.Pow(DeltaS / HalfDist, 2) : Math.PI - Math.PI / 2 * Math.Pow(2 - DeltaS / HalfDist, 2)) * (NextDirection == Directions.X_INC ? 1 : -1);
-                    double[,] RotateMatrix = (NextDirection == Directions.X_INC ? Com.PointD3D.RotateYMatrix(RotateAngle) : Com.PointD3D.RotateXMatrix(RotateAngle));
+                    Com.Matrix2D RotateMatrix = (NextDirection == Directions.X_INC ? Com.PointD3D.RotateYMatrix(RotateAngle) : Com.PointD3D.RotateXMatrix(RotateAngle));
 
                     double GScale = GraphScale;
-                    double[,] OffsetMatrix1 = Com.PointD3D.OffsetMatrix(Character.Center * (-GScale));
-                    double[,] OffsetMatrix2 = Com.PointD3D.OffsetMatrix(Character.Center * GScale);
+                    Com.Matrix2D OffsetMatrix1 = Com.PointD3D.OffsetMatrix(Character.Center * (-GScale));
+                    Com.Matrix2D OffsetMatrix2 = Com.PointD3D.OffsetMatrix(Character.Center * GScale);
 
                     CharacterAffineMatrixList.Clear();
                     CharacterAffineMatrixList.Add(OffsetMatrix1);
