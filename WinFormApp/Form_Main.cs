@@ -32,7 +32,7 @@ namespace WinFormApp
         #region 版本信息
 
         private static readonly string ApplicationName = Application.ProductName; // 程序名。
-        private static readonly string ApplicationEdition = "7.1.6"; // 程序版本。
+        private static readonly string ApplicationEdition = "7.1.7"; // 程序版本。
 
         private static readonly Int32 MajorVersion = new Version(Application.ProductVersion).Major; // 主版本。
         private static readonly Int32 MinorVersion = new Version(Application.ProductVersion).Minor; // 副版本。
