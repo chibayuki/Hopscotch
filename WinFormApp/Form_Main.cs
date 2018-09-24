@@ -2,7 +2,7 @@
 Copyright © 2018 chibayuki@foxmail.com
 
 跳方格 (Hopscotch)
-Version 7.1.17000.1760.R7.180811-0000
+Version 7.1.17000.1760.R7.180924-0000
 
 This file is part of "跳方格" (Hopscotch)
 
@@ -39,7 +39,7 @@ namespace WinFormApp
         private static readonly Int32 BuildNumber = new Version(Application.ProductVersion).Build; // 版本号。
         private static readonly Int32 BuildRevision = new Version(Application.ProductVersion).Revision; // 修订版本。
         private static readonly string LabString = "R7"; // 分支名。
-        private static readonly string BuildTime = "180811-0000"; // 编译时间。
+        private static readonly string BuildTime = "180924-0000"; // 编译时间。
 
         //
 
@@ -218,23 +218,6 @@ namespace WinFormApp
             get
             {
                 return Me;
-            }
-        }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                const int WS_MINIMIZEBOX = 0x00020000;
-
-                CreateParams CP = base.CreateParams;
-
-                if (Me != null && Me.FormStyle != Com.WinForm.FormStyle.Dialog)
-                {
-                    CP.Style = CP.Style | WS_MINIMIZEBOX;
-                }
-
-                return CP;
             }
         }
 
@@ -586,7 +569,7 @@ namespace WinFormApp
             {
                 Pen P = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1);
                 Control Ctrl = PictureBox_Score;
-                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width - Ctrl.Left, Ctrl.Top + Ctrl.Height / 2));
                 P.Dispose();
             }
 
@@ -607,7 +590,7 @@ namespace WinFormApp
             {
                 Pen P = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1);
                 Control Ctrl = PictureBox_GameTime;
-                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width - Ctrl.Left, Ctrl.Top + Ctrl.Height / 2));
                 P.Dispose();
             }
         }
@@ -624,7 +607,7 @@ namespace WinFormApp
             {
                 Pen P = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1);
                 Control Ctrl = Label_PressSensitivity;
-                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width - Ctrl.Left, Ctrl.Top + Ctrl.Height / 2));
                 P.Dispose();
             }
         }
@@ -641,7 +624,7 @@ namespace WinFormApp
             {
                 Pen P = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1);
                 Control Ctrl = Label_PlatformOpacity;
-                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width - Ctrl.Left, Ctrl.Top + Ctrl.Height / 2));
                 P.Dispose();
             }
         }
@@ -658,7 +641,7 @@ namespace WinFormApp
             {
                 Pen P = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1);
                 Control Ctrl = Label_ThemeColor;
-                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width - Ctrl.Left, Ctrl.Top + Ctrl.Height / 2));
                 P.Dispose();
             }
         }
@@ -675,7 +658,7 @@ namespace WinFormApp
             {
                 Pen P = new Pen(Me.RecommendColors.Border_DEC.ToColor(), 1);
                 Control Ctrl = Label_AntiAlias;
-                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width, Ctrl.Top + Ctrl.Height / 2));
+                e.Graphics.DrawLine(P, new Point(Ctrl.Right, Ctrl.Top + Ctrl.Height / 2), new Point(Cntr.Width - Ctrl.Left, Ctrl.Top + Ctrl.Height / 2));
                 P.Dispose();
             }
         }
@@ -2476,7 +2459,10 @@ namespace WinFormApp
             // 鼠标经过 Panel_Environment。
             //
 
-            Panel_Environment.Focus();
+            if (Me.IsActive)
+            {
+                Panel_Environment.Focus();
+            }
         }
 
         private void Panel_Environment_MouseDown(object sender, MouseEventArgs e)
