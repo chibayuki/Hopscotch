@@ -2,7 +2,7 @@
 Copyright © 2018 chibayuki@foxmail.com
 
 跳方格 (Hopscotch)
-Version 7.1.17000.1760.R7.180924-0000
+Version 7.1.17000.1824.R7.181002-1400
 
 This file is part of "跳方格" (Hopscotch)
 
@@ -39,7 +39,7 @@ namespace WinFormApp
         private static readonly Int32 BuildNumber = new Version(Application.ProductVersion).Build; // 版本号。
         private static readonly Int32 BuildRevision = new Version(Application.ProductVersion).Revision; // 修订版本。
         private static readonly string LabString = "R7"; // 分支名。
-        private static readonly string BuildTime = "180924-0000"; // 编译时间。
+        private static readonly string BuildTime = "181002-1400"; // 编译时间。
 
         //
 
@@ -61,8 +61,8 @@ namespace WinFormApp
             new Version(7, 1, 17000, 310),
             new Version(7, 1, 17000, 456),
             new Version(7, 1, 17000, 602),
-            new Version(7, 1, 17000, 790),/*
-            new Version(7, 1, 17000, 1760)*/
+            new Version(7, 1, 17000, 790),
+            new Version(7, 1, 17000, 1760)
         };
 
         //
