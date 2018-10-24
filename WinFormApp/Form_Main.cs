@@ -2,7 +2,7 @@
 Copyright © 2018 chibayuki@foxmail.com
 
 跳方格 (Hopscotch)
-Version 7.1.17000.1824.R7.181002-1400
+Version 7.1.17000.1824.R8.181025-0000
 
 This file is part of "跳方格" (Hopscotch)
 
@@ -32,14 +32,14 @@ namespace WinFormApp
         #region 版本信息
 
         private static readonly string ApplicationName = Application.ProductName; // 程序名。
-        private static readonly string ApplicationEdition = "7.1.7"; // 程序版本。
+        private static readonly string ApplicationEdition = "7.1.8"; // 程序版本。
 
         private static readonly Int32 MajorVersion = new Version(Application.ProductVersion).Major; // 主版本。
         private static readonly Int32 MinorVersion = new Version(Application.ProductVersion).Minor; // 副版本。
         private static readonly Int32 BuildNumber = new Version(Application.ProductVersion).Build; // 版本号。
         private static readonly Int32 BuildRevision = new Version(Application.ProductVersion).Revision; // 修订版本。
-        private static readonly string LabString = "R7"; // 分支名。
-        private static readonly string BuildTime = "181002-1400"; // 编译时间。
+        private static readonly string LabString = "R8"; // 分支名。
+        private static readonly string BuildTime = "181025-0000"; // 编译时间。
 
         //
 
@@ -62,7 +62,8 @@ namespace WinFormApp
             new Version(7, 1, 17000, 456),
             new Version(7, 1, 17000, 602),
             new Version(7, 1, 17000, 790),
-            new Version(7, 1, 17000, 1760)
+            new Version(7, 1, 17000, 1760),/*
+            new Version(7, 1, 17000, 1824)*/
         };
 
         //
@@ -137,8 +138,8 @@ namespace WinFormApp
         {
             public static readonly Cuboid Empty = new Cuboid() // 表示所有成员为 Empty 的长方体。
             {
-                Center = Com.PointD3D.Empty,
-                Size = Com.PointD3D.Empty,
+                Center = Com.PointD3D.Zero,
+                Size = Com.PointD3D.Zero,
                 Color = Color.Empty
             };
 
@@ -1375,14 +1376,14 @@ namespace WinFormApp
             {
                 Com.Matrix GAMatrix = GraphAffineMatrix.Copy();
 
-                if (!Com.Matrix.IsNullOrNonMatrix(GAMatrix) && GAMatrix.Size == new Size(4, 4))
+                if (!Com.Matrix.IsNullOrEmpty(GAMatrix) && GAMatrix.Size == new Size(4, 4))
                 {
                     GAMatrix[3, 0] = GAMatrix[3, 1] = GAMatrix[3, 2] = 0;
 
                     return new Com.PointD3D(1, Math.Sqrt(2), -2).AffineTransformCopy(GAMatrix);
                 }
 
-                return Com.PointD3D.Empty;
+                return Com.PointD3D.Zero;
             }
         }
 
@@ -1424,7 +1425,7 @@ namespace WinFormApp
 
                 Com.Matrix GAMatrix = Com.Matrix.MultiplyLeft(GraphAffineMatrixList);
 
-                if (Com.Matrix.IsNullOrNonMatrix(GAMatrix))
+                if (Com.Matrix.IsNullOrEmpty(GAMatrix))
                 {
                     GAMatrix = GraphAffineMatrix;
                 }
@@ -1450,7 +1451,7 @@ namespace WinFormApp
                         Color = Color.FromArgb(128, Me.Theme <= Com.WinForm.Theme.LightGray ? Color.White : Color.Black)
                     };
 
-                    Com.Painting3D.PaintCuboid(GameBmp, ESA.Center * GScale, ESA.Size * GScale, Color.FromArgb(GetAlpha(ESA.Color), (GameIsOver ? Com.ColorManipulation.GetGrayscaleColor(ESA.Color) : ESA.Color)), 0F, GAMatrix, TLDist, Com.PointD3D.Empty, false, Exposure, AntiAlias);
+                    Com.Painting3D.PaintCuboid(GameBmp, ESA.Center * GScale, ESA.Size * GScale, Color.FromArgb(GetAlpha(ESA.Color), (GameIsOver ? Com.ColorManipulation.GetGrayscaleColor(ESA.Color) : ESA.Color)), 0F, GAMatrix, TLDist, Com.PointD3D.Zero, false, Exposure, AntiAlias);
                 }
 
                 if (CharacterAffineMatrixList.Count > 0)
