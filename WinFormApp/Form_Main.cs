@@ -1357,7 +1357,7 @@ namespace WinFormApp
 
         private double GraphScale => Math.Min(GameBmpRect.Width, GameBmpRect.Height) / (Math.Sqrt(3) * (PlatformMaxWidth + PlatformMaxDist)); // 绘图缩放比例。
 
-        private double TrueLenDist => new Com.PointD(Screen.PrimaryScreen.Bounds.Size).VectorModule * GraphScale; // 真实尺寸距离。
+        private double TrueLenDist => new Com.PointD(Screen.PrimaryScreen.Bounds.Size).Module * GraphScale; // 真实尺寸距离。
 
         private Com.Matrix GraphAffineMatrix => new Com.Matrix(new double[4, 4] // 绘图仿射矩阵。此仿射矩阵表示将三维坐标依次绕 X 轴旋转 90°、绕 Y 轴旋转 -45°、绕 X 轴旋转 35°，以及平移至特定位置。
         {
@@ -1690,7 +1690,7 @@ namespace WinFormApp
                     double Pct_F = (frameId == frameCount ? 1 : (double)frameId / frameCount);
 
                     Character.Center.XY = ((Src * (1 - Pct_F) + Dest * Pct_F)).XY;
-                    Character.Center.Z = Src.Z + (Src - Dest).XY.VectorModule / 4 - Math.Pow(((Src + Dest) / 2 - Character.Center).XY.VectorModule, 2) / (Src - Dest).XY.VectorModule;
+                    Character.Center.Z = Src.Z + (Src - Dest).XY.Module / 4 - Math.Pow(((Src + Dest) / 2 - Character.Center).XY.Module, 2) / (Src - Dest).XY.Module;
 
                     double HalfDist = (NextDirection == Directions.X_INC ? Dest.X - Src.X : Dest.Y - Src.Y) / 2;
                     double DeltaS = (NextDirection == Directions.X_INC ? Character.Center.X - Src.X : Character.Center.Y - Src.Y);
@@ -1709,7 +1709,7 @@ namespace WinFormApp
                     RepaintGameBmp();
                 };
 
-                Com.Animation.Show(Frame, 20 + (Int32)Math.Round((Src - Dest).XY.VectorModule * 4 / JumpVelocity), 15);
+                Com.Animation.Show(Frame, 20 + (Int32)Math.Round((Src - Dest).XY.Module * 4 / JumpVelocity), 15);
 
                 CharacterAffineMatrixList.Clear();
             }
@@ -1820,7 +1820,7 @@ namespace WinFormApp
                     }
                 };
 
-                Com.Animation.Show(Frame, 20 + (Int32)Math.Round(Character.Center.XY.VectorModule * 4 / JumpVelocity), 15);
+                Com.Animation.Show(Frame, 20 + (Int32)Math.Round(Character.Center.XY.Module * 4 / JumpVelocity), 15);
             }
             else
             {
@@ -2000,7 +2000,7 @@ namespace WinFormApp
 
                     if (!CP.IsEmpty)
                     {
-                        AnimateShowCharacterDropOnPlatform((Src - Dest).XY.VectorModule);
+                        AnimateShowCharacterDropOnPlatform((Src - Dest).XY.Module);
 
                         CP = CurrentPlatform;
                         LP = LastPlatform;
