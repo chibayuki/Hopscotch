@@ -1,8 +1,8 @@
 ﻿/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Copyright © 2018 chibayuki@foxmail.com
+Copyright © 2019 chibayuki@foxmail.com
 
 跳方格 (Hopscotch)
-Version 7.1.17000.1824.R8.181025-0000
+Version 7.1.17000.1865.R8.190525-1400
 
 This file is part of "跳方格" (Hopscotch)
 
@@ -39,7 +39,7 @@ namespace WinFormApp
         private static readonly Int32 BuildNumber = new Version(Application.ProductVersion).Build; // 版本号。
         private static readonly Int32 BuildRevision = new Version(Application.ProductVersion).Revision; // 修订版本。
         private static readonly string LabString = "R8"; // 分支名。
-        private static readonly string BuildTime = "181025-0000"; // 编译时间。
+        private static readonly string BuildTime = "190525-1400"; // 编译时间。
 
         //
 
@@ -62,8 +62,8 @@ namespace WinFormApp
             new Version(7, 1, 17000, 456),
             new Version(7, 1, 17000, 602),
             new Version(7, 1, 17000, 790),
-            new Version(7, 1, 17000, 1760),/*
-            new Version(7, 1, 17000, 1824)*/
+            new Version(7, 1, 17000, 1760),
+            new Version(7, 1, 17000, 1824)
         };
 
         //
@@ -3305,10 +3305,7 @@ namespace WinFormApp
             // 鼠标释放 Panel_PressSensitivityAdjustment。
             //
 
-            if (e.Button == MouseButtons.Left)
-            {
-                PressSensitivityIsAdjusting = false;
-            }
+            PressSensitivityIsAdjusting = false;
         }
 
         private void Panel_PressSensitivityAdjustment_MouseMove(object sender, MouseEventArgs e)
@@ -3317,7 +3314,7 @@ namespace WinFormApp
             // 鼠标经过 Panel_PressSensitivityAdjustment。
             //
 
-            if (PressSensitivityIsAdjusting == true)
+            if (PressSensitivityIsAdjusting)
             {
                 PressSensitivityAdjustment();
             }
@@ -3530,10 +3527,7 @@ namespace WinFormApp
             // 鼠标释放 Panel_PlatformOpacityAdjustment。
             //
 
-            if (e.Button == MouseButtons.Left)
-            {
-                PlatformOpacityIsAdjusting = false;
-            }
+            PlatformOpacityIsAdjusting = false;
         }
 
         private void Panel_PlatformOpacityAdjustment_MouseMove(object sender, MouseEventArgs e)
@@ -3542,7 +3536,7 @@ namespace WinFormApp
             // 鼠标经过 Panel_PlatformOpacityAdjustment。
             //
 
-            if (PlatformOpacityIsAdjusting == true)
+            if (PlatformOpacityIsAdjusting)
             {
                 PlatformOpacityAdjustment();
             }
