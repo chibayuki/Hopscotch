@@ -795,7 +795,7 @@
             this.Label_Copyright.Name = "Label_Copyright";
             this.Label_Copyright.Size = new System.Drawing.Size(272, 19);
             this.Label_Copyright.TabIndex = 0;
-            this.Label_Copyright.Text = "Copyright © 2019 chibayuki@foxmail.com";
+            this.Label_Copyright.Text = "Copyright © 2020 chibayuki@foxmail.com";
             // 
             // Panel_GitHub
             // 

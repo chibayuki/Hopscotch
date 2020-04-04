@@ -1,8 +1,8 @@
 ﻿/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Copyright © 2019 chibayuki@foxmail.com
+Copyright © 2020 chibayuki@foxmail.com
 
 跳方格 (Hopscotch)
-Version 7.1.17000.1865.R8.190525-1400
+Version 7.1.17000.1865.R9.200404-0000
 
 This file is part of "跳方格" (Hopscotch)
 
@@ -32,14 +32,14 @@ namespace WinFormApp
         #region 版本信息
 
         private static readonly string ApplicationName = Application.ProductName; // 程序名。
-        private static readonly string ApplicationEdition = "7.1.8"; // 程序版本。
+        private static readonly string ApplicationEdition = "7.1.9"; // 程序版本。
 
         private static readonly Int32 MajorVersion = new Version(Application.ProductVersion).Major; // 主版本。
         private static readonly Int32 MinorVersion = new Version(Application.ProductVersion).Minor; // 副版本。
         private static readonly Int32 BuildNumber = new Version(Application.ProductVersion).Build; // 版本号。
         private static readonly Int32 BuildRevision = new Version(Application.ProductVersion).Revision; // 修订版本。
-        private static readonly string LabString = "R8"; // 分支名。
-        private static readonly string BuildTime = "190525-1400"; // 编译时间。
+        private static readonly string LabString = "R9"; // 分支名。
+        private static readonly string BuildTime = "200404-0000"; // 编译时间。
 
         //
 
@@ -1423,11 +1423,11 @@ namespace WinFormApp
                 double TLDist = TrueLenDist;
                 Com.PointD3D IDirection = IlluminationDirection;
 
-                Com.Matrix GAMatrix = Com.Matrix.MultiplyLeft(GraphAffineMatrixList);
+                Com.Matrix GAMatrix = GraphAffineMatrix;
 
-                if (Com.Matrix.IsNullOrEmpty(GAMatrix))
+                if (GraphAffineMatrixList.Count > 0)
                 {
-                    GAMatrix = GraphAffineMatrix;
+                    GAMatrix = Com.Matrix.MultiplyLeft(GraphAffineMatrixList);
                 }
 
                 for (int i = PlatformList.Count - 1; i >= 0; i--)
